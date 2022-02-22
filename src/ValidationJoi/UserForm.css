@@ -1,0 +1,32 @@
+.ui {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: normal;
+  margin: 0px;
+  background-color: orange;
+  direction: block;
+  height: 70%;
+}
+label {
+  width: 250px;
+  height: 3vh;
+}
+
+input {
+  width: 250px;
+  height: 3vh;
+}
+button {
+  width: 70px;
+  height: 4vh;
+  background-color: grey;
+  color: rgb(3, 7, 103);
+}
+.primeira {
+  background-color: orange;
+  text-align: center;
+}
