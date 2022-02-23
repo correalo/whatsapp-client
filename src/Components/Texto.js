@@ -1,8 +1,19 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import axios from 'axios';
 
 export default function MultilineTextFields() {
+  const [message, setMessage] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+        const response = await axios.get(`http://localhost:3000/message/did_not_attend`);
+        setMessage(response.data);
+    }
+
+    fetchData();
+  }, []);
   return (
     <Box
       component="form"
@@ -20,6 +31,7 @@ export default function MultilineTextFields() {
           multiline
           rows={10}
           defaultValue="texto a ser realizado"
+          value={message.content}
         />
       </div>
       
