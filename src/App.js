@@ -1,21 +1,11 @@
 import "./App.css";
-import Send from "./Components/Send";
-import Upload from "./Components/Upload";
-import Texto from "./Components/Texto";
-import Memed from "./Components/Memed";
-import SelecaoMensagem from "./Components/SelecaoMensagem";
+import MessagePage from "./Components/MessagePage";
 
 function App() {
   return (
     <div className="App">
       <div className="generica">
-        <br />
-        <Upload />
-        <br />
-        <br />
-        <SelecaoMensagem />
-        <Texto />
-        <Send />
+        <MessagePage/>
       </div>
     </div>
   );

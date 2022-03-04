@@ -4,46 +4,48 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import axios from 'axios';
 
 export default function SelecaoMensagem() {
+  const [value, setValue] = React.useState();
+  const [messages, setMessages] = React.useState([]);
+
+  const getMessages = async () => {
+    const response = await axios.get(`http://localhost:3000/message`);
+    setMessages(response.data);
+  }
+
+  React.useEffect(() => {
+    getMessages();
+  }, []);
+
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   return (
     <FormControl>
       <FormLabel
         id="demo-row-radio-buttons-group-label"
         style={{ color: "blue" }}
       >
-        MENSAGENS
+        MENSAGENS {value}
       </FormLabel>
       <RadioGroup
         row
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
-      >
-        <FormControlLabel
-          value="nao-compareceu"
-          control={<Radio />}
-          label="Não Compareceu"
-        />
-        <FormControlLabel
-          value="compareceu-nao-operado"
-          control={<Radio />}
-          label="Compareceu Não Operado"
-        />
-        <FormControlLabel
-          value="operado-1d"
-          control={<Radio />}
-          label="Operado 1 Dia Antes"
-        />
-        <FormControlLabel
-          value="operado-10d"
-          control={<Radio />}
-          label="Operado 10 Dias Antes"
-        />
-        <FormControlLabel
-          value="operado-3a18meses"
-          control={<Radio />}
-          label="Operado 3 a 18 Meses"
-        />
+        onChange={handleChange}
+      > 
+      { 
+        messages.map(message => {
+          return <FormControlLabel
+            value={message.id}
+            control={<Radio />}
+            label={message.description}
+          />
+        })
+      }
       </RadioGroup>
     </FormControl>
   );
